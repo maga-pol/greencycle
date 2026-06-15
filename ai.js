@@ -41,7 +41,7 @@ async function sendMessage(text) {
     messages.push({ role: "assistant", content: data.reply });
     chatStatus.textContent = "Готово. Можно задать следующий вопрос.";
   } catch (error) {
-    addMessage("assistant", "Migo сейчас не смог подключиться к онлайн-ИИ. Проверьте подключение сайта к OpenAI и попробуйте ещё раз.");
+    addMessage("assistant", getFriendlyError(error.message));
     chatStatus.textContent = "Онлайн-ответ временно недоступен.";
   }
 }
@@ -64,3 +64,21 @@ promptButtons.forEach((button) => {
     chatInput.focus();
   });
 });
+
+function getFriendlyError(message) {
+  const text = String(message || "").toLowerCase();
+
+  if (text.includes("not configured")) {
+    return "Migo не видит ключ OpenAI в Vercel. Проверьте, что переменная называется OPENAI_API_KEY, сохранена для Production и после этого был сделан Redeploy.";
+  }
+
+  if (text.includes("incorrect api key") || text.includes("invalid api key") || text.includes("unauthorized")) {
+    return "Migo подключился к OpenAI, но ключ не принят. Проверьте, что в Vercel вставлен именно OpenAI API key из platform.openai.com, обычно он начинается с sk- или sk-proj-.";
+  }
+
+  if (text.includes("model")) {
+    return "Migo подключился к OpenAI, но модель не доступна для этого ключа. В Vercel можно добавить OPENAI_MODEL со значением gpt-5.4-mini или заменить модель в коде.";
+  }
+
+  return "Migo сейчас не смог подключиться к онлайн-ИИ. Проверьте ключ OpenAI в Vercel, сделайте Redeploy и попробуйте ещё раз.";
+}
