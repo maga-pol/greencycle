@@ -18,6 +18,10 @@
       background: #eef3e6;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     .page {
       min-height: 100vh;
       background:
@@ -74,14 +78,16 @@
     .nav {
       display: flex;
       align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
       gap: 8px;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 800;
     }
 
     .nav a {
       min-height: 48px;
-      padding: 13px 20px;
+      padding: 13px 16px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -105,6 +111,7 @@
     .intro {
       max-width: 860px;
       margin-bottom: 46px;
+      scroll-margin-top: 130px;
     }
 
     .eyebrow {
@@ -134,6 +141,7 @@
     .section {
       padding: 54px 0;
       border-top: 1px solid rgba(45, 113, 56, 0.2);
+      scroll-margin-top: 130px;
     }
 
     h2 {
@@ -286,20 +294,25 @@
         </a>
 
         <nav class="nav" aria-label="Основная навигация">
-          <a href="index.html">Главная</a>
-          <a class="active" href="about.html">О нас</a>
+          <a href="index.html">Главное</a>
+          <a class="active" href="#project">О проекте</a>
+          <a href="#authors">Кто мы</a>
+          <a href="#problem">Проблема</a>
+          <a href="#process">Принцип работы</a>
+          <a href="#cost">Стоимость</a>
+          <a href="#contacts">Контакты</a>
         </nav>
       </header>
     </div>
 
     <div class="content">
-      <section class="intro">
+      <section class="intro" id="project">
         <p class="eyebrow">О проекте и авторах</p>
         <h1>Кто мы и зачем создали GreenCycle</h1>
         <p class="lead">GreenCycle - школьный научный проект из Алматы: мобильная система аэробного компостирования, которая помогает перерабатывать органические отходы прямо там, где они появляются.</p>
       </section>
 
-      <section class="section">
+      <section class="section" id="authors">
         <h2>Авторы проекта</h2>
         <div class="authors">
           <article class="author-card">
@@ -316,12 +329,28 @@
         </div>
       </section>
 
-      <section class="section">
-        <h2>Идея GreenCycle</h2>
+      <section class="section" id="problem">
+        <h2>Проблема</h2>
         <div class="text-block">
           <p>Исходной точкой исследования стало наблюдение: каждую осень жители города сжигают листву на придомовых территориях, несмотря на штраф до 500 000 тенге. Одна из причин - отсутствие доступной инфраструктуры для органических отходов.</p>
+          <p>На полигонах органические отходы разлагаются без достаточного доступа кислорода. В результате образуется метан, который значительно сильнее влияет на климат, чем CO2. Поэтому GreenCycle переводит разложение органики в аэробный режим.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>О проекте</h2>
+        <div class="text-block">
           <p>Авторы предложили децентрализованную систему: органика перерабатывается во дворах, парках и на территориях учебных заведений без вывоза на полигон. Это снижает транспортные издержки и помогает избежать выбросов метана при анаэробном разложении.</p>
           <p>Проект был представлен на Международном научном форуме Shoqan Ecology в апреле 2026 года и прошёл этапы исследования, сборки, натурного эксперимента, анализа данных и публичной защиты.</p>
+        </div>
+      </section>
+
+      <section class="section" id="process">
+        <h2>Принцип работы</h2>
+        <div class="text-block">
+          <p>Система GreenCycle работает как замкнутый цикл переработки органики. Сначала листья, трава и пищевые отходы измельчаются шредером, чтобы увеличить площадь контакта с кислородом и ускорить разложение.</p>
+          <p>Затем масса помещается в габионный компостер. Через сетчатую конструкцию поступает воздух, а датчики температуры и влажности помогают контролировать состояние компоста на протяжении эксперимента.</p>
+          <p>Финальный продукт - биогумус, который можно вернуть в почву для питания городских зелёных насаждений.</p>
         </div>
       </section>
 
@@ -343,7 +372,25 @@
         </div>
       </section>
 
-      <section class="section">
+      <section class="section" id="cost">
+        <h2>Стоимость</h2>
+        <div class="stats">
+          <article class="stat-card">
+            <strong>105 000</strong>
+            <p>тенге - полная стоимость системы GreenCycle.</p>
+          </article>
+          <article class="stat-card">
+            <strong>40 000</strong>
+            <p>тенге - базовая комплектация проекта.</p>
+          </article>
+          <article class="stat-card">
+            <strong>0,3-0,5 т</strong>
+            <p>CO2-эквивалента в год может предотвращать одна установка.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="contacts">
         <h2>Контакты</h2>
         <div class="contacts">
           <div class="contact-item">
