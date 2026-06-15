@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Калькулятор - GreenCycle</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="calculator.js" defer></script>
+</head>
+<body>
+  <main class="page">
+    <div class="topbar-wrap">
+      <header class="topbar">
+        <a class="brand" href="index.html" aria-label="GreenCycle"><span class="brand-mark">G</span><span>GreenCycle</span></a>
+        <nav class="nav" aria-label="Основная навигация">
+          <a href="index.html">Главное</a>
+          <a href="project.html">О проекте</a>
+          <a href="authors.html">Кто мы</a>
+          <a href="problem.html">Проблема</a>
+          <a href="process.html">Принцип работы</a>
+          <a href="cost.html">Стоимость</a>
+          <a class="active" href="calculator.html">Калькулятор</a>
+          <a href="contacts.html">Контакты</a>
+        </nav>
+      </header>
+    </div>
+
+    <div class="content">
+      <section class="intro">
+        <p class="eyebrow">Калькулятор</p>
+        <h1>Рассчитайте эффект GreenCycle</h1>
+        <p class="lead">Введите примерный объём органики, срок работы и вариант комплектации. Калькулятор покажет переработку, биогумус, снижение выбросов и стоимость.</p>
+      </section>
+
+      <section class="section calculator-layout">
+        <article class="card">
+          <h2>Параметры</h2>
+          <form class="calc-form" id="calculatorForm">
+            <div class="field">
+              <label for="wasteKg">Органические отходы в неделю</label>
+              <input id="wasteKg" name="wasteKg" type="range" min="5" max="250" step="5" value="50">
+              <span class="range-value"><output id="wasteKgValue">50</output> кг/неделю</span>
+            </div>
+
+            <div class="field">
+              <label for="weeks">Срок работы</label>
+              <input id="weeks" name="weeks" type="range" min="4" max="52" step="4" value="12">
+              <span class="range-value"><output id="weeksValue">12</output> недель</span>
+            </div>
+
+            <div class="field">
+              <label for="organicShare">Доля органики в общем мусоре</label>
+              <input id="organicShare" name="organicShare" type="range" min="20" max="70" step="5" value="50">
+              <span class="range-value"><output id="organicShareValue">50</output>%</span>
+            </div>
+
+            <div class="field">
+              <label for="setupType">Комплектация</label>
+              <select id="setupType" name="setupType">
+                <option value="105000">Автономная с солнечной станцией - 105 000 ₸</option>
+                <option value="40000">Базовая от электросети - 40 000 ₸</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="pricePerKg">Оценочная ценность компоста</label>
+              <input id="pricePerKg" name="pricePerKg" type="number" min="0" max="500" step="10" value="80">
+            </div>
+          </form>
+        </article>
+
+        <article class="card result-panel">
+          <h2>Результат</h2>
+          <div class="result-grid">
+            <div class="result-item"><strong id="totalWaste">600 кг</strong><span>органики будет переработано</span></div>
+            <div class="result-item"><strong id="compostMass">300 кг</strong><span>примерная масса биогумуса</span></div>
+            <div class="result-item"><strong id="volumeReduction">2,5x</strong><span>сокращение объёма после измельчения</span></div>
+            <div class="result-item"><strong id="co2Saved">0,30 т</strong><span>предотвращённые выбросы CO2-экв.</span></div>
+            <div class="result-item"><strong id="setupCost">105 000 ₸</strong><span>стоимость выбранной системы</span></div>
+            <div class="result-item"><strong id="compostValue">24 000 ₸</strong><span>оценочная ценность компоста</span></div>
+          </div>
+          <p class="note" id="summaryText">Расчёт основан на данных проекта: 50 кг органики за 40 дней, сокращение объёма в 2,5 раза, масса готового компоста около 50% от исходного сырья, снижение выбросов метана на 85-95%.</p>
+        </article>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

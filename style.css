@@ -11,6 +11,133 @@ body {
   background: #eef3e6;
 }
 
+.home {
+  min-height: 100vh;
+  overflow: hidden;
+  color: #fffdf0;
+  background-image:
+    linear-gradient(rgba(10, 18, 13, 0.48), rgba(10, 18, 13, 0.58)),
+    url("nature-bg.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.home-topbar {
+  position: relative;
+  z-index: 2;
+  width: min(1680px, calc(100% - 48px));
+  min-height: 80px;
+  margin: 28px auto 0;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border-radius: 8px;
+  background: rgba(244, 240, 230, 0.92);
+  color: #102019;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(8px);
+}
+
+.home-content {
+  min-height: calc(100vh - 108px);
+  width: min(1120px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 64px 0 108px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.home-kicker {
+  margin-bottom: 16px;
+  color: #d9f5b9;
+  font-size: clamp(18px, 2vw, 26px);
+  font-weight: 900;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+}
+
+.home h1 {
+  color: #fffdf0;
+  font-size: clamp(66px, 11vw, 142px);
+  line-height: 0.94;
+  text-shadow: 0 5px 30px rgba(0, 0, 0, 0.35);
+}
+
+.home-lead {
+  max-width: 760px;
+  margin-top: 22px;
+  color: #f1f6df;
+  font-size: clamp(19px, 2.2vw, 27px);
+  line-height: 1.4;
+  font-weight: 800;
+}
+
+.home-actions {
+  margin-top: 34px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.button {
+  min-height: 56px;
+  padding: 17px 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 32px;
+  font-size: 19px;
+  font-weight: 900;
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button.primary {
+  background: #d6ffb9;
+  color: #16261c;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
+}
+
+.button.secondary {
+  background: rgba(255, 253, 240, 0.9);
+  color: #102019;
+}
+
+.home-stats {
+  width: min(820px, 100%);
+  margin-top: 38px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.home-stats span {
+  min-height: 92px;
+  padding: 18px;
+  display: grid;
+  align-content: center;
+  gap: 6px;
+  border-radius: 8px;
+  background: rgba(16, 32, 25, 0.48);
+  color: #eef3e6;
+  font-weight: 800;
+  backdrop-filter: blur(8px);
+}
+
+.home-stats strong {
+  color: #d6ffb9;
+  font-size: 27px;
+}
+
 .page {
   min-height: 100vh;
   background:
@@ -233,8 +360,93 @@ ol {
   border-bottom: 0;
 }
 
+.calculator-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.calc-form {
+  display: grid;
+  gap: 20px;
+}
+
+.field {
+  display: grid;
+  gap: 10px;
+}
+
+.field label {
+  color: #102019;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  min-height: 50px;
+  padding: 12px 14px;
+  border: 2px solid rgba(45, 113, 56, 0.24);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.82);
+  color: #102019;
+  font: inherit;
+  font-weight: 800;
+}
+
+.field input[type="range"] {
+  min-height: auto;
+  padding: 0;
+  accent-color: #2d7138;
+}
+
+.range-value {
+  color: #2d7138;
+  font-weight: 900;
+}
+
+.result-panel {
+  position: sticky;
+  top: 120px;
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.result-item {
+  padding: 20px;
+  border-radius: 8px;
+  background: rgba(45, 113, 56, 0.09);
+}
+
+.result-item strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #2d7138;
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1;
+}
+
+.result-item span {
+  color: #34483a;
+  font-weight: 800;
+}
+
+.note {
+  margin-top: 18px;
+  color: #526456;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
 @media (max-width: 1080px) {
-  .topbar {
+  .topbar,
+  .home-topbar {
     align-items: flex-start;
     flex-direction: column;
   }
@@ -245,7 +457,8 @@ ol {
 }
 
 @media (max-width: 760px) {
-  .topbar {
+  .topbar,
+  .home-topbar {
     width: min(100% - 24px, 1680px);
     padding: 12px;
     gap: 12px;
@@ -279,9 +492,24 @@ ol {
     padding: 56px 0 48px;
   }
 
+  .home-content {
+    width: min(100% - 28px, 1120px);
+    padding: 52px 0 72px;
+  }
+
+  .home-stats,
+  .calculator-layout,
+  .result-grid {
+    grid-template-columns: 1fr;
+  }
+
   .grid-2,
   .grid-3 {
     grid-template-columns: 1fr;
+  }
+
+  .result-panel {
+    position: static;
   }
 
   .price-row {

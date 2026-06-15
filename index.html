@@ -4,182 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GreenCycle</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
-      color: #f8f8ea;
-      background: #142419;
-    }
-
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      overflow: hidden;
-      background-image:
-        linear-gradient(rgba(10, 18, 13, 0.48), rgba(10, 18, 13, 0.56)),
-        url("nature-bg.jpg");
-      background-position: center;
-      background-size: cover;
-    }
-
-    .topbar {
-      position: relative;
-      z-index: 1;
-      width: min(1350px, calc(100% - 48px));
-      min-height: 80px;
-      margin: 28px auto 0;
-      padding: 16px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      border-radius: 8px;
-      background: rgba(244, 240, 230, 0.9);
-      color: #102019;
-      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(6px);
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 19px;
-      font-weight: 800;
-      letter-spacing: 0;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .brand-mark {
-      width: 42px;
-      height: 42px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      background: #2d7138;
-      color: #fff;
-      font-weight: 900;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      flex-wrap: wrap;
-      gap: 8px;
-      font-size: 16px;
-      font-weight: 800;
-    }
-
-    .nav a {
-      min-height: 48px;
-      padding: 13px 16px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 24px;
-      color: #102019;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-
-    .nav a.active {
-      background: #2d7138;
-      color: #fff;
-    }
-
-    .hero-content {
-      min-height: calc(100vh - 108px);
-      padding: 72px 24px 128px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .eyebrow {
-      margin-bottom: 18px;
-      color: #d9f5b9;
-      font-size: clamp(20px, 2vw, 28px);
-      font-weight: 900;
-      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
-    }
-
-    h1 {
-      color: #fffdf0;
-      font-size: clamp(64px, 10vw, 138px);
-      line-height: 0.95;
-      font-weight: 900;
-      letter-spacing: 0;
-      text-shadow: 0 5px 30px rgba(0, 0, 0, 0.35);
-    }
-
-    .start-button {
-      min-width: 164px;
-      margin-top: 32px;
-      padding: 20px 42px;
-      border: 0;
-      border-radius: 36px;
-      background: #d6ffb9;
-      color: #16261c;
-      font-size: 22px;
-      font-weight: 900;
-      text-decoration: none;
-      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
-      transition: transform 0.2s ease, background 0.2s ease;
-    }
-
-    .start-button:hover {
-      background: #e4ffd0;
-      transform: translateY(-2px);
-    }
-
-    @media (max-width: 720px) {
-      .topbar {
-        width: min(100% - 24px, 1350px);
-        margin-top: 12px;
-        padding: 12px;
-        gap: 12px;
-      }
-
-      .brand {
-        font-size: 16px;
-      }
-
-      .brand-mark {
-        width: 36px;
-        height: 36px;
-      }
-
-      .nav {
-        gap: 4px;
-        font-size: 15px;
-      }
-
-      .nav a {
-        min-height: 40px;
-        padding: 10px 12px;
-      }
-
-      .hero-content {
-        min-height: calc(100vh - 76px);
-        padding: 56px 18px 80px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="hero">
-    <header class="topbar">
+  <main class="home">
+    <header class="home-topbar">
       <a class="brand" href="index.html" aria-label="GreenCycle">
         <span class="brand-mark">G</span>
         <span>GreenCycle</span>
@@ -192,14 +21,24 @@
         <a href="problem.html">Проблема</a>
         <a href="process.html">Принцип работы</a>
         <a href="cost.html">Стоимость</a>
+        <a href="calculator.html">Калькулятор</a>
         <a href="contacts.html">Контакты</a>
       </nav>
     </header>
 
-    <section class="hero-content">
-      <p class="eyebrow">Мобильная система компостирования</p>
+    <section class="home-content">
+      <p class="home-kicker">Научный проект · Алматы 2026</p>
       <h1>GreenCycle</h1>
-      <a class="start-button" href="project.html">Начать</a>
+      <p class="home-lead">Мобильная система компостирования органических отходов на солнечной энергии.</p>
+      <div class="home-actions">
+        <a class="button primary" href="calculator.html">Рассчитать эффект</a>
+        <a class="button secondary" href="project.html">О проекте</a>
+      </div>
+      <div class="home-stats" aria-label="Ключевые показатели">
+        <span><strong>85-95%</strong> меньше метана</span>
+        <span><strong>40 дней</strong> до биогумуса</span>
+        <span><strong>105 000 ₸</strong> автономная версия</span>
+      </div>
     </section>
   </main>
 </body>
