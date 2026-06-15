@@ -69,16 +69,16 @@ function getFriendlyError(message) {
   const text = String(message || "").toLowerCase();
 
   if (text.includes("not configured")) {
-    return "Migo не видит ключ OpenAI в Vercel. Проверьте, что переменная называется OPENAI_API_KEY, сохранена для Production и после этого был сделан Redeploy.";
+    return "Migo не видит ключ Gemini в Vercel. Проверьте, что переменная называется GEMINI_API_KEY, сохранена для Production и после этого был сделан Redeploy.";
   }
 
-  if (text.includes("incorrect api key") || text.includes("invalid api key") || text.includes("unauthorized")) {
-    return "Migo подключился к OpenAI, но ключ не принят. Проверьте, что в Vercel вставлен именно OpenAI API key из platform.openai.com, обычно он начинается с sk- или sk-proj-.";
+  if (text.includes("api key") || text.includes("permission") || text.includes("unauthorized")) {
+    return "Migo подключился к Gemini, но ключ не принят. Проверьте, что в Vercel вставлен именно Gemini API key из Google AI Studio и переменная называется GEMINI_API_KEY.";
   }
 
   if (text.includes("model")) {
-    return "Migo подключился к OpenAI, но модель не доступна для этого ключа. В Vercel можно добавить OPENAI_MODEL со значением gpt-5.4-mini или заменить модель в коде.";
+    return "Migo подключился к Gemini, но модель не доступна для этого ключа. В Vercel можно добавить GEMINI_MODEL со значением gemini-3.5-flash или заменить модель в коде.";
   }
 
-  return "Migo сейчас не смог подключиться к онлайн-ИИ. Проверьте ключ OpenAI в Vercel, сделайте Redeploy и попробуйте ещё раз.";
+  return "Migo сейчас не смог подключиться к онлайн-ИИ. Проверьте ключ Gemini в Vercel, сделайте Redeploy и попробуйте ещё раз.";
 }

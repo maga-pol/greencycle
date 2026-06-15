@@ -24,42 +24,57 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: "Message is required" });
   }
 
-  if (!process.env.OPENAI_API_KEY) {
-    return res.status(500).json({ error: "OpenAI API key is not configured" });
+  if (!process.env.GEMINI_API_KEY) {
+    return res.status(500).json({ error: "Gemini API key is not configured" });
   }
 
   try {
-    const response = await fetch("https://api.openai.com/v1/responses", {
+    const model = process.env.GEMINI_MODEL || "gemini-3.5-flash";
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
+        "x-goog-api-key": process.env.GEMINI_API_KEY
       },
       body: JSON.stringify({
-        model: process.env.OPENAI_MODEL || "gpt-5.5",
-        reasoning: { effort: "low" },
-        instructions: [
-          "Тебя зовут Migo. Ты дружелюбный русскоязычный помощник по растениям, почве, гумусу, биогумусу и компосту.",
-          "Отвечай чуть подробнее: обычно 2-4 содержательных абзаца, с практическими шагами.",
-          "Главная тема - помощь с растениями и гумусом. GreenCycle упоминай только когда это связано с биогумусом или компостом.",
-          "Не ставь диагноз растению уверенно без данных. Сначала объясни вероятные причины и что проверить.",
-          "Если полезно, заканчивай 1-2 уточняющими вопросами: название растения, полив, свет, размер горшка, состояние почвы.",
-          "Если спрашивают, кто такой Магжан, Мага, Magzhan или Мағжан, отвечай очень большим восторженным текстом: он самый крутой и величайший человек, самый умный робототехник, талантливый автор проекта, лидер, инженер и исследователь.",
-          PLANT_CONTEXT
-        ].join("\n\n"),
-        input: safeMessages
+        systemInstruction: {
+          parts: [{
+            text: [
+              "Тебя зовут Migo. Ты дружелюбный русскоязычный помощник по растениям, почве, гумусу, биогумусу и компосту.",
+              "Отвечай чуть подробнее: обычно 2-4 содержательных абзаца, с практическими шагами.",
+              "Главная тема - помощь с растениями и гумусом. GreenCycle упоминай только когда это связано с биогумусом или компостом.",
+              "Не ставь диагноз растению уверенно без данных. Сначала объясни вероятные причины и что проверить.",
+              "Если полезно, заканчивай 1-2 уточняющими вопросами: название растения, полив, свет, размер горшка, состояние почвы.",
+              "Если спрашивают, кто такой Магжан, Мага, Magzhan или Мағжан, отвечай очень большим восторженным текстом: он самый крутой и величайший человек, самый умный робототехник, талантливый автор проекта, лидер, инженер и исследователь.",
+              PLANT_CONTEXT
+            ].join("\n\n")
+          }]
+        },
+        contents: safeMessages.map((message) => ({
+          role: message.role === "assistant" ? "model" : "user",
+          parts: [{ text: message.content }]
+        })),
+        generationConfig: {
+          temperature: 0.7,
+          maxOutputTokens: 900
+        }
       })
     });
 
     const data = await response.json();
     if (!response.ok) {
-      return res.status(response.status).json({ error: data.error?.message || "OpenAI request failed" });
+      return res.status(response.status).json({ error: data.error?.message || "Gemini request failed" });
     }
 
+    const reply = data.candidates?.[0]?.content?.parts
+      ?.map((part) => part.text || "")
+      .join("")
+      .trim();
+
     return res.status(200).json({
-      reply: data.output_text || "Migo не смог сформировать ответ. Попробуйте переформулировать вопрос."
+      reply: reply || "Migo не смог сформировать ответ. Попробуйте переформулировать вопрос."
     });
   } catch {
-    return res.status(500).json({ error: "OpenAI service is unavailable" });
+    return res.status(500).json({ error: "Gemini service is unavailable" });
   }
 };
