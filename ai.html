@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ИИ помощник - GreenCycle</title>
+  <title>Migo - GreenCycle</title>
   <link rel="stylesheet" href="style.css">
   <script src="ai.js" defer></script>
 </head>
@@ -20,7 +20,7 @@
           <a href="process.html">Принцип работы</a>
           <a href="cost.html">Стоимость</a>
           <a href="calculator.html">Калькулятор</a>
-          <a class="active" href="ai.html">ИИ помощник</a>
+          <a class="active" href="ai.html">Migo</a>
           <a href="contacts.html">Контакты</a>
         </nav>
       </header>
@@ -28,16 +28,16 @@
 
     <div class="content">
       <section class="intro">
-        <p class="eyebrow">ИИ помощник</p>
-        <h1>Спросите про GreenCycle</h1>
-        <p class="lead">Помощник объяснит принцип работы, стоимость, экологический эффект и поможет подготовить короткий ответ для презентации проекта.</p>
+        <p class="eyebrow">Migo</p>
+        <h1>Спросите Migo про GreenCycle</h1>
+        <p class="lead">Migo объяснит принцип работы, стоимость, экологический эффект и поможет подготовить короткий ответ для презентации проекта.</p>
       </section>
 
       <section class="section chat-layout">
         <article class="card chat-card">
           <div class="chat-messages" id="chatMessages" aria-live="polite">
             <div class="message assistant">
-              <p>Здравствуйте! Я помощник GreenCycle. Могу объяснить проект простыми словами, помочь с расчётами или подготовить ответ для защиты.</p>
+              <p>Здравствуйте! Я Migo, помощник GreenCycle. Могу объяснить проект простыми словами, помочь с расчётами или подготовить ответ для защиты.</p>
             </div>
           </div>
 
@@ -46,7 +46,7 @@
             <textarea id="chatInput" rows="3" placeholder="Например: объясни, почему компостирование лучше полигона"></textarea>
             <button class="button primary" type="submit">Отправить</button>
           </form>
-          <p class="note" id="chatStatus">Ответы работают через защищённую Netlify Function. Ключ OpenAI должен быть задан в переменной окружения OPENAI_API_KEY.</p>
+          <p class="note" id="chatStatus"></p>
         </article>
 
         <aside class="card">

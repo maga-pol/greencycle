@@ -23,7 +23,7 @@ async function sendMessage(text) {
   addMessage("user", question);
   messages.push({ role: "user", content: question });
   chatInput.value = "";
-  chatStatus.textContent = "ИИ помощник думает...";
+  chatStatus.textContent = "Migo думает...";
 
   try {
     const response = await fetch("/.netlify/functions/ai-chat", {
@@ -41,8 +41,8 @@ async function sendMessage(text) {
     messages.push({ role: "assistant", content: data.reply });
     chatStatus.textContent = "Готово. Можно задать следующий вопрос.";
   } catch (error) {
-    addMessage("assistant", "Пока не могу ответить. Проверьте, что на Netlify добавлена переменная OPENAI_API_KEY и функция опубликована.");
-    chatStatus.textContent = error.message;
+    addMessage("assistant", "Пока не могу ответить. Попробуйте ещё раз чуть позже.");
+    chatStatus.textContent = "Migo временно недоступен.";
   }
 }
 
