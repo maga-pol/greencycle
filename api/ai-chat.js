@@ -6,18 +6,12 @@ Practical biohumus guidance: for pot plants, use biohumus moderately; about 10-2
 Good plant care depends on light, watering, drainage, pot size, roots, air flow, and soil structure. Biohumus helps soil fertility and structure, but it does not fix overwatering, root rot, poor light, or lack of drainage.
 `;
 
-exports.handler = async (event) => {
-  if (event.httpMethod !== "POST") {
-    return json(405, { error: "Method not allowed" });
+module.exports = async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
   }
 
-  let body;
-  try {
-    body = JSON.parse(event.body || "{}");
-  } catch {
-    return json(400, { error: "Invalid JSON" });
-  }
-
+  const body = typeof req.body === "string" ? JSON.parse(req.body || "{}") : req.body || {};
   const messages = Array.isArray(body.messages) ? body.messages.slice(-8) : [];
   const safeMessages = messages
     .filter((message) => message && ["user", "assistant"].includes(message.role))
@@ -27,13 +21,11 @@ exports.handler = async (event) => {
     }));
 
   if (!safeMessages.length) {
-    return json(400, { error: "Message is required" });
+    return res.status(400).json({ error: "Message is required" });
   }
 
-  const lastUserMessage = [...safeMessages].reverse().find((message) => message.role === "user")?.content || "";
-
   if (!process.env.OPENAI_API_KEY) {
-    return json(500, { error: "OpenAI API key is not configured" });
+    return res.status(500).json({ error: "OpenAI API key is not configured" });
   }
 
   try {
@@ -61,19 +53,13 @@ exports.handler = async (event) => {
 
     const data = await response.json();
     if (!response.ok) {
-      return json(response.status, { error: data.error?.message || "OpenAI request failed" });
+      return res.status(response.status).json({ error: data.error?.message || "OpenAI request failed" });
     }
 
-    return json(200, { reply: data.output_text || "Migo не смог сформировать ответ. Попробуйте переформулировать вопрос." });
+    return res.status(200).json({
+      reply: data.output_text || "Migo не смог сформировать ответ. Попробуйте переформулировать вопрос."
+    });
   } catch {
-    return json(500, { error: "OpenAI service is unavailable" });
+    return res.status(500).json({ error: "OpenAI service is unavailable" });
   }
 };
-
-function json(statusCode, payload) {
-  return {
-    statusCode,
-    headers: { "Content-Type": "application/json; charset=utf-8" },
-    body: JSON.stringify(payload)
-  };
-}
