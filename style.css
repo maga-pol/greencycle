@@ -444,6 +444,107 @@ ol {
   line-height: 1.5;
 }
 
+.chat-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.chat-card {
+  display: grid;
+  gap: 18px;
+}
+
+.chat-messages {
+  height: min(58vh, 520px);
+  min-height: 360px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  border-radius: 8px;
+  background: rgba(238, 243, 230, 0.8);
+}
+
+.message {
+  max-width: 82%;
+  padding: 14px 16px;
+  border-radius: 8px;
+}
+
+.message p {
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.message.assistant {
+  align-self: flex-start;
+  background: #fffdf0;
+}
+
+.message.user {
+  align-self: flex-end;
+  background: #2d7138;
+}
+
+.message.user p {
+  color: #fff;
+}
+
+.chat-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: end;
+}
+
+.chat-form textarea {
+  width: 100%;
+  min-height: 74px;
+  padding: 14px;
+  border: 2px solid rgba(45, 113, 56, 0.24);
+  border-radius: 8px;
+  resize: vertical;
+  color: #102019;
+  font: inherit;
+  font-weight: 700;
+}
+
+.prompt-list {
+  display: grid;
+  gap: 10px;
+}
+
+.prompt-list button {
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 0;
+  border-radius: 8px;
+  background: rgba(45, 113, 56, 0.12);
+  color: #102019;
+  font: inherit;
+  font-weight: 900;
+  text-align: left;
+  cursor: pointer;
+}
+
+.prompt-list button:hover {
+  background: rgba(45, 113, 56, 0.2);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 @media (max-width: 1080px) {
   .topbar,
   .home-topbar {
@@ -499,8 +600,14 @@ ol {
 
   .home-stats,
   .calculator-layout,
-  .result-grid {
+  .result-grid,
+  .chat-layout,
+  .chat-form {
     grid-template-columns: 1fr;
+  }
+
+  .message {
+    max-width: 100%;
   }
 
   .grid-2,

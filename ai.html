@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ИИ помощник - GreenCycle</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="ai.js" defer></script>
+</head>
+<body>
+  <main class="page">
+    <div class="topbar-wrap">
+      <header class="topbar">
+        <a class="brand" href="index.html" aria-label="GreenCycle"><span class="brand-mark">G</span><span>GreenCycle</span></a>
+        <nav class="nav" aria-label="Основная навигация">
+          <a href="index.html">Главное</a>
+          <a href="project.html">О проекте</a>
+          <a href="authors.html">Кто мы</a>
+          <a href="problem.html">Проблема</a>
+          <a href="process.html">Принцип работы</a>
+          <a href="cost.html">Стоимость</a>
+          <a href="calculator.html">Калькулятор</a>
+          <a class="active" href="ai.html">ИИ помощник</a>
+          <a href="contacts.html">Контакты</a>
+        </nav>
+      </header>
+    </div>
+
+    <div class="content">
+      <section class="intro">
+        <p class="eyebrow">ИИ помощник</p>
+        <h1>Спросите про GreenCycle</h1>
+        <p class="lead">Помощник объяснит принцип работы, стоимость, экологический эффект и поможет подготовить короткий ответ для презентации проекта.</p>
+      </section>
+
+      <section class="section chat-layout">
+        <article class="card chat-card">
+          <div class="chat-messages" id="chatMessages" aria-live="polite">
+            <div class="message assistant">
+              <p>Здравствуйте! Я помощник GreenCycle. Могу объяснить проект простыми словами, помочь с расчётами или подготовить ответ для защиты.</p>
+            </div>
+          </div>
+
+          <form class="chat-form" id="chatForm">
+            <label class="sr-only" for="chatInput">Сообщение</label>
+            <textarea id="chatInput" rows="3" placeholder="Например: объясни, почему компостирование лучше полигона"></textarea>
+            <button class="button primary" type="submit">Отправить</button>
+          </form>
+          <p class="note" id="chatStatus">Ответы работают через защищённую Netlify Function. Ключ OpenAI должен быть задан в переменной окружения OPENAI_API_KEY.</p>
+        </article>
+
+        <aside class="card">
+          <h2>Быстрые вопросы</h2>
+          <div class="prompt-list">
+            <button type="button" data-prompt="Объясни GreenCycle за 30 секунд для школьной презентации.">Объясни за 30 секунд</button>
+            <button type="button" data-prompt="Почему аэробное компостирование снижает выбросы метана?">Почему меньше метана?</button>
+            <button type="button" data-prompt="Посчитай примерный эффект для 50 кг органики за 40 дней.">Эффект 50 кг</button>
+            <button type="button" data-prompt="Какие вопросы может задать жюри про стоимость проекта?">Вопросы про стоимость</button>
+          </div>
+        </aside>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
