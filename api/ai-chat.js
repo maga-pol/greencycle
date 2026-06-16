@@ -11,7 +11,12 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const body = typeof req.body === "string" ? JSON.parse(req.body || "{}") : req.body || {};
+  let body = {};
+  try {
+    body = typeof req.body === "string" ? JSON.parse(req.body || "{}") : req.body || {};
+  } catch {
+    return res.status(400).json({ error: "Invalid JSON body" });
+  }
   const messages = Array.isArray(body.messages) ? body.messages.slice(-8) : [];
   const safeMessages = messages
     .filter((message) => message && ["user", "assistant"].includes(message.role))
@@ -29,7 +34,7 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const model = process.env.GEMINI_MODEL || "gemini-3.5-flash";
+    const model = process.env.GEMINI_MODEL || "gemini-flash-latest";
     const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
       method: "POST",
       headers: {
@@ -61,7 +66,13 @@ module.exports = async function handler(req, res) {
       })
     });
 
-    const data = await response.json();
+    const responseText = await response.text();
+    let data = {};
+    try {
+      data = responseText ? JSON.parse(responseText) : {};
+    } catch {
+      data = { error: { message: responseText || "Gemini returned an empty response" } };
+    }
     if (!response.ok) {
       return res.status(response.status).json({ error: data.error?.message || "Gemini request failed" });
     }
@@ -74,7 +85,8 @@ module.exports = async function handler(req, res) {
     return res.status(200).json({
       reply: reply || "Migo не смог сформировать ответ. Попробуйте переформулировать вопрос."
     });
-  } catch {
-    return res.status(500).json({ error: "Gemini service is unavailable" });
+  } catch (error) {
+    console.error("Gemini service error:", error);
+    return res.status(500).json({ error: error?.message || "Gemini service is unavailable" });
   }
 };

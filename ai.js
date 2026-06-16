@@ -77,7 +77,7 @@ function getFriendlyError(message) {
   }
 
   if (text.includes("model")) {
-    return "Migo подключился к Gemini, но модель не доступна для этого ключа. В Vercel можно добавить GEMINI_MODEL со значением gemini-3.5-flash или заменить модель в коде.";
+    return "Migo подключился к Gemini, но модель не доступна для этого ключа. В Vercel можно добавить GEMINI_MODEL со значением gemini-flash-latest или заменить модель в коде.";
   }
 
   return "Migo сейчас не смог подключиться к онлайн-ИИ. Проверьте ключ Gemini в Vercel, сделайте Redeploy и попробуйте ещё раз.";
